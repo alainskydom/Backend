@@ -1,7 +1,7 @@
-import matplotlib
-import matplotlib.pyplot as plt
+#import matplotlib
+#import matplotlib.pyplot as plt
 import json
-from typing import List
+#from typing import List
 from flask import Flask, request, jsonify
 import pickle
 import pandas as pd
@@ -9,7 +9,7 @@ import numpy as np
 from lightgbm import LGBMClassifier
 import io
 import os
-import uuid
+#import uuid
 
 
 
@@ -18,19 +18,19 @@ import uuid
 
 # Charger le meilleur modèle
 try:
-    best_model = pickle.load(open(r"C:\Users\ascia\anaconda_projects\Projet 7- Scoring\mlflow_model\model.pkl", 'rb'))
+    best_model = pickle.load(open(r"model.pkl", 'rb'))
 except FileNotFoundError:
-    print("Error: Model file not found.  Make sure 'best_model.pkl' is in the correct directory.")
+    print("Error: Model file not found.  Make sure 'model.pkl' is in the correct directory.")
     best_model = None # Handle the case where the model couldn't be loaded
 
 # Charger les données
-df_ = pd.read_csv(r"C:\Users\ascia\anaconda_projects\Projet 7- Scoring\df_api_1000.csv")[0:100]
+df_ = pd.read_csv(r"df_api_1000.csv")
 df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
 df_ = df_.drop(['TARGET', 'SK_ID_CURR'], axis=1)
 # df.drop(columns='index', inplace=True)
 
 # Define the threshold of for application.
-threshold = 0.6
+threshold = 0.08
 
 
 # --- Flask Setup ---
@@ -131,8 +131,8 @@ def predict():
     csv_buffer.seek(0)
 
     # Generate a filename with a timestamp
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"prediction_{idx}_{timestamp}.csv"
+    #timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"prediction_{idx}.csv"
 
     # Return the CSV file as a downloadable attachment
     return send_file(
