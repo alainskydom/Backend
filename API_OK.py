@@ -24,7 +24,7 @@ except FileNotFoundError:
     best_model = None # Handle the case where the model couldn't be loaded
 
 # Charger les données
-df_ = pd.read_csv(r"C:\Users\ascia\anaconda_projects\Projet 7- Scoring\df_.csv")[0:100]
+df_ = pd.read_csv(r"C:\Users\ascia\anaconda_projects\Projet 7- Scoring\df_api_1000.csv")[0:100]
 df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
 df_ = df_.drop(['TARGET', 'SK_ID_CURR'], axis=1)
 # df.drop(columns='index', inplace=True)
