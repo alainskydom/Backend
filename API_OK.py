@@ -30,7 +30,7 @@ df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
 # df.drop(columns='index', inplace=True)
 
 # Define the threshold of for application.
-threshold = 0.08
+threshold = 0.07
 
 
 # --- Flask Setup ---
@@ -41,7 +41,7 @@ app = Flask(__name__)
 def read_root():
     return {"message": "Bienvenue dans l'API du projet 7 - Implémentez un modèle de scoring"}
 
-@app.route('/predict/', methods=['POST'])
+@app.route('/predict/', methods=["GET"])
 def predict():
     """
     Takes a string 'XXX' (renamed as index 'idx'), retrieves corresponding
