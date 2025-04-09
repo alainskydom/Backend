@@ -37,6 +37,10 @@ threshold = 0.08
 app = Flask(__name__)
 
 # --- API Endpoints ---
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenue dans l'API du projet 7 - Implémentez un modèle de scoring"}
+
 @app.route('/predict/', methods=['POST'])
 def predict():
     """
