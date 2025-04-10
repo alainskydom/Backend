@@ -41,6 +41,19 @@ app = Flask(__name__)
 def read_root():
     return {"message": "Bienvenue dans l'API du projet 7 - Implémentez un modèle de scoring"}
 
+
+@app.route('/api/data', methods=['POST'])
+def receive_data():
+    if not request.is_json:  # Vérifie si les données sont au format JSON
+        return jsonify({"error": "Le contenu doit être en JSON"}), 415
+    
+    data = request.get_json()  # Récupère les données JSON
+    print("Données reçues :", data)
+    
+    # Exemple de réponse
+    return jsonify({"message": "Données reçues avec succès", "data": data}), 200
+
+
 @app.route('/predict/', methods=["GET"])
 def predict():
     """
