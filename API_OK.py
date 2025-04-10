@@ -65,10 +65,10 @@ def predict():
     class NumpyEncoder(json.JSONEncoder):
         """ Custom encoder for numpy data types """
 
-    if request.content_type != 'application/json':
-         return jsonify({"error": "Le contenu doit être au format JSON"}), 415
-
-
+    #if request.content_type != 'application/json':
+         #return jsonify({"error": "Le contenu doit être au format JSON"}), 415
+    if not request.is_json:  # Vérifie si les données sont au format JSON
+        return jsonify({"error": "Le contenu doit être en JSON"}), 415
 
     
     try:
