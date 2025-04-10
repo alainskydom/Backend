@@ -42,7 +42,7 @@ def read_root():
     return {"message": "Bienvenue dans l'API du projet 7 - Implémentez un modèle de scoring"}
 
 
-@app.route('data', methods=['GET'])
+@app.route('/data/', methods=['GET'])
 def receive_data():
     if not request.is_json:  # Vérifie si les données sont au format JSON
         return jsonify({"error": "Le contenu doit être en JSON"}), 415
